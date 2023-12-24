@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { MyContext } from '../../context/MyContext'
-import './SignUp.css'
 import { newUserInformation } from '../../helpers/newUserInformation'
 import { useNavigate } from 'react-router'
+import './SignUp.css'
 
 function SignUp () {
   const navigate = useNavigate()

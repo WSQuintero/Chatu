@@ -5,6 +5,7 @@ import { loginErrors } from '../../helpers/loginErrors'
 function useAuthenticationAndErrorHandling ({ searchActualUser }) {
   const [errorLogin, setErrorLogin] = useState('')
   const login = useAuthentication({ searchActualUser })
+
   useEffect(() => {
     if (login.authenticationError) {
       for (const i in loginErrors) {
@@ -26,7 +27,13 @@ function useAuthenticationAndErrorHandling ({ searchActualUser }) {
   }, [errorLogin])
 
   useEffect(() => {
-    sessionStorage.setItem('loggedUser', JSON.stringify(searchActualUser.userState.loggedUser))
+    if (searchActualUser.userState.loggedUser.email) {
+      sessionStorage.setItem('loggedUser',
+        JSON.stringify({
+          ...searchActualUser.userState.loggedUser,
+          isUserAuthenticated: true
+        }))
+    }
   }, [searchActualUser.userState.loggedUser])
 
   return { login, errorLogin }

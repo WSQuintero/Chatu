@@ -32,9 +32,10 @@ const loggedUserSlice = createSlice({
       state.idConnection = idConnection
       state.perfilPhoto = perfilPhoto
       state.isUserAuthenticated = isUserAuthenticated
-    }
+    },
+    resetLoggedUser: (state, action) => initialState
   }
 })
 
-export const { updateUserLogged } = loggedUserSlice.actions
+export const { updateUserLogged, resetLoggedUser } = loggedUserSlice.actions
 export default loggedUserSlice.reducer

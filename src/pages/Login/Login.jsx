@@ -1,9 +1,13 @@
 import { useContext } from 'react'
 import { MyContext } from '../../context/MyContext'
+import { useResetLoggedUser } from '../../customHooks/useResetLoggedUser'
+import { useRedirectOnAuthentication } from '../../customHooks/useRedirectOnAuthentication'
 import './Login.css'
 
 function Login () {
   const { authenticate } = useContext(MyContext)
+  useResetLoggedUser()
+  useRedirectOnAuthentication()
 
   const handleLogin = (event) => {
     event.preventDefault()
