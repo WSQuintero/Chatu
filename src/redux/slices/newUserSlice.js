@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  name: null,
-  email: null,
+  name: '',
+  email: '',
   friends: [],
   uid: [],
-  idConnection: null,
-  perfilPhoto: null,
+  idConnection: '',
+  perfilPhoto: '',
   isUserAuthenticated: false
 }
 

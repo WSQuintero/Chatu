@@ -9,7 +9,7 @@ function useUserRegistrationInDatabase (signUpData) {
     if (signUpData.signUp?.signedUpUser) {
       userRegistrationInfoDb.addUserInformation({
         ...newUserInfoInState,
-        uid: signUpData.signUp?.signedUpUser?.uid
+        uid: signUpData.signUp?.signedUpUser?.uid || ''
       })
     }
   }, [signUpData.signUp.signedUpUser])

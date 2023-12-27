@@ -1,10 +1,10 @@
 const newUserInformation = {
-  name: null,
-  email: null,
+  name: '',
+  email: '',
   friends: [],
   uid: [],
-  idConnection: null,
-  perfilPhoto: null,
+  idConnection: '',
+  perfilPhoto: '',
   isUserAuthenticated: false
 }
 

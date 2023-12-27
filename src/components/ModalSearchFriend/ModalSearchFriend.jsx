@@ -1,23 +1,17 @@
+import { useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeFriendSearchModal } from '../../redux/slices/openFriendSearchModalSlice'
+import { MyContext } from '../../context/MyContext'
 import { FaSearch } from 'react-icons/fa'
 import { IoIosCloseCircle } from 'react-icons/io'
 import { IconContext } from 'react-icons/lib'
-// import { FoundFriend } from '../FoundFriend/FoundFriend'
-import { useDispatch, useSelector } from 'react-redux'
-import { closeFriendSearchModal } from '../../redux/slices/openFriendSearchModalSlice'
-import { useContext, useEffect } from 'react'
-import { MyContext } from '../../context/MyContext'
+import { FoundFriend } from '../FoundFriend/FoundFriend'
 
 function ModalSearchFriend () {
-  const newFriend = useSelector((state) => state.newFriend)
-  const friendSearchModalSlice = useSelector((state) => state.friendSearchModalSlice)
   const { searchNewFriend } = useContext(MyContext)
+  const newFriend = useSelector((state) => state.newFriend)
+  const isFriendSearchModalOpen = useSelector((state) => state.isFriendSearchModalOpen)
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (newFriend.email) {
-      console.log(newFriend)
-    }
-  }, [newFriend])
 
   const handleSearchFriend = (event) => {
     event.preventDefault()
@@ -27,22 +21,22 @@ function ModalSearchFriend () {
 
   return (
     <>
-      {friendSearchModalSlice && (
+      {isFriendSearchModalOpen && (
         <section className='w-full h-full absolute bg-white '>
           <form
             onSubmit={handleSearchFriend}
             className='flex flex-col items-center justify-center mt-5'
             id='handleSearchFriend'
             htmlFor='searchUserByEmail'>
-          <button onClick={() => dispatch(closeFriendSearchModal())}>
-            <IconContext.Provider
-              value={{
-                color: 'green',
-                className: 'w-[50px] h-[50px] absolute right-5 '
-              }}>
-              <IoIosCloseCircle />
-            </IconContext.Provider>
-          </button>
+            <button onClick={() => dispatch(closeFriendSearchModal())}>
+              <IconContext.Provider
+                value={{
+                  color: 'green',
+                  className: 'w-[50px] h-[50px] absolute right-5 '
+                }}>
+                <IoIosCloseCircle />
+              </IconContext.Provider>
+            </button>
             <div className='h-[50PX] w-[80%] flex items-center justify-center bg-[#D7FFD7]'>
               <label
                 className='relative h-full flex items-center p-3 text-[#37E23B]'
@@ -63,7 +57,7 @@ function ModalSearchFriend () {
               Buscar
             </button>
           </form>
-          {/* <FoundFriend userFound={userFound} /> */}
+          <FoundFriend newFriend={newFriend} />
         </section>
       )}
     </>

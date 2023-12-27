@@ -4,6 +4,7 @@ import { useAuthenticationAndErrorHandling } from '../customHooks/principalHooks
 import { useUserCreationAndErrorHandling } from '../customHooks/principalHooks/useUserCreationAndErrorHandling'
 import { useUserRegistrationInDatabase } from '../customHooks/principalHooks/useUserRegistrationInDatabase'
 import { useSearchNewFriend } from '../customHooks/principalHooks/useSearchNewFriend'
+import { UseAddNewFriend } from '../customHooks/principalHooks/useAddNewFriend'
 
 const MyContext = createContext()
 
@@ -14,6 +15,8 @@ function ContextProvider ({ children }) {
   const { userRegistrationInfoDb } = useUserRegistrationInDatabase(signUpData)
   const searchNewFriend = useSearchNewFriend()
 
+  const { findUserId } = UseAddNewFriend()
+
   return (
     <MyContext.Provider
       value={{
@@ -21,7 +24,8 @@ function ContextProvider ({ children }) {
         searchActualUser,
         userRegistrationInfoDb,
         signUpData,
-        searchNewFriend
+        searchNewFriend,
+        findUserId
       }}>
       {children}
     </MyContext.Provider>

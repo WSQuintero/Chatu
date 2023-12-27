@@ -10,7 +10,7 @@ const store = configureStore({
     loggedUser: userLoggedReducer,
     newUser: newUserReducer,
     isUserAuthenticated: isUserAuthenticatedReducer,
-    friendSearchModalSlice: friendSearchModalReducer,
+    isFriendSearchModalOpen: friendSearchModalReducer,
     newFriend: newFriendReducer
   }
 })
