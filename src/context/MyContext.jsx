@@ -13,9 +13,8 @@ function ContextProvider ({ children }) {
   const authenticate = useAuthenticationAndErrorHandling({ searchActualUser })
   const signUpData = useUserCreationAndErrorHandling()
   const { userRegistrationInfoDb } = useUserRegistrationInDatabase(signUpData)
-  const searchNewFriend = useSearchNewFriend()
-
-  const { findUserId } = UseAddNewFriend()
+  const getFriend = useSearchNewFriend()
+  const addNewFriend = UseAddNewFriend()
 
   return (
     <MyContext.Provider
@@ -24,8 +23,8 @@ function ContextProvider ({ children }) {
         searchActualUser,
         userRegistrationInfoDb,
         signUpData,
-        searchNewFriend,
-        findUserId
+        getFriend,
+        addNewFriend
       }}>
       {children}
     </MyContext.Provider>

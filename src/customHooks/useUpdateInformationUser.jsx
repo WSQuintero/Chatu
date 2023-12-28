@@ -11,7 +11,7 @@ function useUpdateInformationUser () {
     newInformation
   }) => {
     const docRef = doc(db, nameOfCollection, idDocument)
-
+    setIsOkayUpdate(false)
     try {
       await updateDoc(docRef, newInformation)
       setIsOkayUpdate(true)
