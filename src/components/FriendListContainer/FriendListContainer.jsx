@@ -1,12 +1,22 @@
 import { IconContext } from 'react-icons'
 import { FaSearch } from 'react-icons/fa'
 import { IoIosAddCircle } from 'react-icons/io'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openFriendSearchModal } from '../../redux/slices/openFriendSearchModalSlice'
+import { Friend } from '../Friend/Friend'
+import { useEffect } from 'react'
 
-function FriendListContainer () {
+function FriendListContainer() {
   const dispatch = useDispatch()
+  const loggedUser = useSelector((state) => state.loggedUser)
+  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const actualUser = loggedUser.email ? loggedUser : sessionUser
 
+  useEffect(() => {
+    if (loggedUser.email) {
+      console.log(loggedUser)
+    }
+  }, [loggedUser])
   return (
     <div className='flex flex-col w-[97%] p-10 gap-3 h-[99%] mt-20  bg-white lg:rounded-ss-3xl lg:rounded-ee-3xl lg:rounded-tr-[100px] rounded-3xl overflow-auto  lg:rounded-bl-[100px] shadow-green-950 shadow-xl  justify-start text-[#37E23B]'>
       <div className='h-[50PX] flex items-center justify-center bg-[#D7FFD7] p-3'>
@@ -31,6 +41,9 @@ function FriendListContainer () {
           <IoIosAddCircle />
         </IconContext.Provider>
       </button>
+      {actualUser.friends.map((friend) => (
+        <Friend friend={friend} key={friend.uid} />
+      ))}
     </div>
   )
 }

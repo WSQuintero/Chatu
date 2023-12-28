@@ -4,7 +4,7 @@ import { useUpdateInformationUser } from '../useUpdateInformationUser'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUserLogged } from '../../redux/slices/loggedUserSlice'
 
-function UseAddNewFriend () {
+function UseAddNewFriend() {
   const { findUserId, userIdFound } = useSearchIdByEmail()
   const { updateUser, isOkayUpdate } = useUpdateInformationUser()
   const [friendExist, setFriendExist] = useState(false)
@@ -15,13 +15,19 @@ function UseAddNewFriend () {
 
   const updatedFriendOfUser = {
     ...(loggedUser.email ? loggedUser : sessionUser),
-    friends: [...loggedUser.friends, newFriend]
+    friends: [
+      ...(loggedUser.email ? loggedUser : sessionUser).friends,
+      newFriend
+    ]
   }
 
   useEffect(() => {
     if (userIdFound) {
-      if ((loggedUser.email ? loggedUser : sessionUser)
-        .friends.every((friend) => friend.email !== newFriend.email)) {
+      if (
+        (loggedUser.email ? loggedUser : sessionUser).friends.every(
+          (friend) => friend.email !== newFriend.email
+        )
+      ) {
         updateUser({
           nameOfCollection: 'users',
           idDocument: userIdFound,
