@@ -11,22 +11,18 @@ function UseAddNewFriend() {
   const newFriend = useSelector((state) => state.newFriend)
   const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
   const loggedUser = useSelector((state) => state.loggedUser)
+  const actualUser = loggedUser.email ? loggedUser : sessionUser
   const dispatch = useDispatch()
 
   const updatedFriendOfUser = {
-    ...(loggedUser.email ? loggedUser : sessionUser),
-    friends: [
-      ...(loggedUser.email ? loggedUser : sessionUser).friends,
-      newFriend
-    ]
+    ...actualUser,
+    friends: [...actualUser.friends, newFriend]
   }
 
   useEffect(() => {
     if (userIdFound) {
       if (
-        (loggedUser.email ? loggedUser : sessionUser).friends.every(
-          (friend) => friend.email !== newFriend.email
-        )
+        actualUser.friends.every((friend) => friend.email !== newFriend.email)
       ) {
         updateUser({
           nameOfCollection: 'users',
