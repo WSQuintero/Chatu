@@ -6,6 +6,7 @@ import { useUserRegistrationInDatabase } from '../customHooks/principalHooks/use
 import { useSearchNewFriend } from '../customHooks/principalHooks/useSearchNewFriend'
 import { UseAddNewFriend } from '../customHooks/principalHooks/useAddNewFriend'
 import { useDeleteFriend } from '../customHooks/principalHooks/useDeleteFriend'
+import { useUpdateUserImg } from '../customHooks/principalHooks/useUpdateUserImg'
 
 const MyContext = createContext()
 
@@ -17,6 +18,7 @@ function ContextProvider({ children }) {
   const getFriend = useSearchNewFriend()
   const addNewFriend = UseAddNewFriend()
   const deleteFriend = useDeleteFriend()
+  const updateUserImg = useUpdateUserImg()
 
   return (
     <MyContext.Provider
@@ -27,7 +29,8 @@ function ContextProvider({ children }) {
         signUpData,
         getFriend,
         addNewFriend,
-        deleteFriend
+        deleteFriend,
+        updateUserImg
       }}>
       {children}
     </MyContext.Provider>
