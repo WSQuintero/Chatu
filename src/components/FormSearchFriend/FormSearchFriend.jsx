@@ -18,8 +18,8 @@ function FormSearchFriend() {
 
   return (
     <form
-      onSubmit={handleSearchFriend}
       className='flex flex-col items-center justify-center mt-5'
+      onSubmit={handleSearchFriend}
       id='handleSearchFriend'
       htmlFor='searchUserByEmail'>
       <button onClick={() => dispatch(closeFriendSearchModal())}>
@@ -40,9 +40,9 @@ function FormSearchFriend() {
           </IconContext.Provider>
         </label>
         <input
+          className=' bg-transparent placeholder:text-[#37E23B] h-full outline-none text-[#19581a] font-md  w-full'
           type='email'
           placeholder='Buscar usuario por email'
-          className=' bg-transparent placeholder:text-[#37E23B] h-full outline-none text-[#19581a] font-md  w-full'
           name='searchUserByEmail'
           id='searchUserByEmail'
         />

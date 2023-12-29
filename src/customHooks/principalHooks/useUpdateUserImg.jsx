@@ -19,6 +19,7 @@ function useUpdateUserImg() {
       })
     }
   }, [updateUserImg.imgUrl])
+
   return { handleUpdateUserImg, imgUrl: updateUserImg.imgUrl }
 }
 

@@ -8,6 +8,7 @@ function ProfileImageSelector() {
   const { updateUserImg } = useContext(MyContext)
   const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
   const loggedUser = useSelector((state) => state.loggedUser)
+
   return (
     <figure className='w-[100px] h-[100px]  absolute top-1 bg-white rounded-full object-cover '>
       <div className='w-[100px] h-[100px]  overflow-hidden bg-white rounded-full object-cover'>
@@ -18,7 +19,7 @@ function ProfileImageSelector() {
             loggedUser.perfilPhoto ||
             '/img/no-user.jpg'
           }
-          alt='logo'
+          alt='User image'
           className='object-cover w-full h-full'
         />
         <label htmlFor='fileInput' className='cursor-pointer'>

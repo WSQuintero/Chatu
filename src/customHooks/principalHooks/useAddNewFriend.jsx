@@ -41,7 +41,6 @@ function UseAddNewFriend() {
 
   useEffect(() => {
     if (isOkayUpdate) {
-      console.log(isOkayUpdate)
       sessionStorage.setItem('loggedUser', JSON.stringify(updatedFriendOfUser))
       dispatch(updateUserLogged(updatedFriendOfUser))
     }

@@ -4,6 +4,7 @@ import newUserReducer from './slices/newUserSlice'
 import isUserAuthenticatedReducer from './slices/userAtuhenticatedSlice'
 import friendSearchModalReducer from './slices/openFriendSearchModalSlice'
 import newFriendReducer from './slices/newFriendSlice'
+import openChatReducer from './slices/openChatSlice'
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     newUser: newUserReducer,
     isUserAuthenticated: isUserAuthenticatedReducer,
     isFriendSearchModalOpen: friendSearchModalReducer,
-    newFriend: newFriendReducer
+    newFriend: newFriendReducer,
+    isOpenChat: openChatReducer,
   }
 })
 

@@ -7,14 +7,16 @@ function useDeleteFriend() {
   const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
 
   const handleDeleteFriend = (friendEmail) => {
-    const filteredUser = (loggedUser || sessionUser).friends.filter(
-      (friend) => friend.email !== friendEmail
-    )
+    const filteredUser = (
+      loggedUser.email ? loggedUser : sessionUser
+    ).friends.filter((friend) => friend.email !== friendEmail)
+
     searchAndUpdateUser({
       email: loggedUser.email || sessionUser.email,
       newInfo: { friends: filteredUser }
     })
   }
+
   return { handleDeleteFriend }
 }
 
