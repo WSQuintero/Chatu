@@ -6,6 +6,7 @@ import './Login.css'
 import { setSelectedFriendSs } from '../../helpers/setSelectedFriendSs'
 import { resetSelectedFriend } from '../../redux/slices/selectedFriendSlice'
 import { useDispatch } from 'react-redux'
+import { resetLoggedUser } from '../../redux/slices/loggedUserSlice'
 
 function Login() {
   const { authenticate } = useContext(MyContext)
@@ -23,6 +24,7 @@ function Login() {
   useEffect(() => {
     setSelectedFriendSs('')
     dispatch(resetSelectedFriend())
+    dispatch(resetLoggedUser())
   }, [])
 
   return (

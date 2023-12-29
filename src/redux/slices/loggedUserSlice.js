@@ -7,7 +7,8 @@ const initialState = JSON.parse(sessionStorage.getItem('loggedUser')) || {
   uid: [],
   idConnection: '',
   perfilPhoto: '',
-  isUserAuthenticated: false
+  isUserAuthenticated: false,
+  messages: []
 }
 
 const loggedUserSlice = createSlice({
@@ -22,7 +23,8 @@ const loggedUserSlice = createSlice({
         uid,
         idConnection,
         perfilPhoto,
-        isUserAuthenticated
+        isUserAuthenticated,
+        messages
       } = action.payload
 
       state.name = name
@@ -32,6 +34,7 @@ const loggedUserSlice = createSlice({
       state.idConnection = idConnection
       state.perfilPhoto = perfilPhoto
       state.isUserAuthenticated = isUserAuthenticated
+      state.messages = messages
     },
     resetLoggedUser: (state, action) => initialState
   }

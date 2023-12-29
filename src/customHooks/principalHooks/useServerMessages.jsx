@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react'
 import { socket } from '../../socket/socket'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateMessages } from '../../redux/slices/messagesSlice'
+import { getUserSs } from '../../helpers/getUserSs'
+import { useSearchAndUpdateUserInfo } from '../useSearchAndUpdateUserInfo'
 
 function useServerMessages() {
   const dispatch = useDispatch()
+  const sessionUser = getUserSs()
   const messages = useSelector((state) => state.messages)
   const [test, setTest] = useState([])
+  const { searchAndUpdateUser } = useSearchAndUpdateUserInfo()
 
   useEffect(() => {
     const receiveMessage = (message) => {
@@ -27,10 +31,23 @@ function useServerMessages() {
   }, [])
 
   useEffect(() => {
-    dispatch(
-      updateMessages(messages[0]?.message ? [...messages, test] : [test])
-    )
+    if (!messages[0]?.message) {
+      dispatch(updateMessages(sessionUser.messages))
+    } else {
+      dispatch(
+        updateMessages(messages[0]?.message ? [...messages, test] : [test])
+      )
+    }
   }, [test])
+
+  useEffect(() => {
+    if (messages[0]?.message) {
+      searchAndUpdateUser({
+        email: sessionUser.email,
+        newInfo: { ...sessionUser, messages }
+      })
+    }
+  }, [messages])
 }
 
 export { useServerMessages }

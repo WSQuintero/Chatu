@@ -2,14 +2,14 @@ import { getUserSs } from '../../helpers/getUserSs'
 import { useSelector } from 'react-redux'
 
 function ChatMessages() {
-  const messages = useSelector((state) => state.messages)
   const friend = useSelector((state) => state.selectedFriend)
   const idConnection = useSelector((state) => state.idConnection)
   const sessionUser = getUserSs()
+  const loggedUser = useSelector((state) => state.loggedUser)
 
   return (
     <ul className='h-11/12 pt-5 bg-white w-full gap-5 flex flex-col '>
-      {messages
+      {(loggedUser.messages || sessionUser.messages)
         .filter((mss) => mss.idConnection === idConnection)
         .map((message, index) =>
           message.sender === sessionUser.email ? (
