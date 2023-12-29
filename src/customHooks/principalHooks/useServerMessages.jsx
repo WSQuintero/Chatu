@@ -16,11 +16,9 @@ function useServerMessages() {
     const receiveMessage = (message) => {
       const newMessage = {
         message: message.message,
-        // user: isUse/rOrFriend,
         sender: message.sender,
         receiver: message.receiver,
         idConnection: message.idConnection
-        // idConnection
       }
       setTest(newMessage)
     }
@@ -31,21 +29,20 @@ function useServerMessages() {
   }, [])
 
   useEffect(() => {
-    if (!messages[0]?.message) {
+    if (!messages) {
       dispatch(updateMessages(sessionUser.messages))
     } else {
-      dispatch(
-        updateMessages(messages[0]?.message ? [...messages, test] : [test])
-      )
+      dispatch(updateMessages([...messages, test]))
     }
   }, [test])
 
   useEffect(() => {
-    if (messages[0]?.message) {
+    if (messages) {
       searchAndUpdateUser({
         email: sessionUser.email,
-        newInfo: { ...sessionUser, messages }
+        newInfo: { messages }
       })
+      console.log(messages)
     }
   }, [messages])
 }

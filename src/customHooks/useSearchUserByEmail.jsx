@@ -10,6 +10,7 @@ function useSearchUserByEmail() {
     const usersCollection = collection(db, 'users')
     setFoundUser(null)
     try {
+      setFoundUser(null)
       const querySnapshot = await getDocs(usersCollection)
       const user = [...querySnapshot.docs].find((doc) => {
         return (

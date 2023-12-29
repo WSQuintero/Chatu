@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSearchUserByEmail } from '../useSearchUserByEmail'
 import { createUpdatedInformation } from '../../helpers/createUpdatedInformation'
 import { getUserSs } from '../../helpers/getUserSs'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
 import { socket } from '../../socket/socket'
 import { updateSelectedFriend } from '../../redux/slices/selectedFriendSlice'
@@ -15,14 +15,12 @@ import {
 function useConnectSocket() {
   const dispatch = useDispatch()
   const sessionUser = getUserSs()
-  const selectedFriend = useSelector((state) => state.selectedFriend)
-  const { searchUserByEmail: searchFriendInformation, foundUser: foundFriend } =
-    useSearchUserByEmail()
+  const friendInformation = useSearchUserByEmail()
   const [goToChat, setGoToChat] = useState(false)
 
-  const createIdConnection = (emilFriend) => {
+  const createIdConnection = (emailFriend) => {
     setGoToChat(false)
-    searchFriendInformation(emilFriend)
+    friendInformation.searchUserByEmail(emailFriend)
   }
 
   const connectToRoom = (idConnection) => {
@@ -50,20 +48,21 @@ function useConnectSocket() {
   }
 
   useEffect(() => {
-    if (foundFriend) {
-      const friendUid = createUpdatedInformation(foundFriend).uid
+    if (friendInformation.foundUser) {
+      const friendUid = createUpdatedInformation(
+        friendInformation.foundUser
+      ).uid
       const idConnection = [friendUid, sessionUser.uid].sort().join('')
       connectToRoom(idConnection)
-      dispatch(updateSelectedFriend(createUpdatedInformation(foundFriend)))
-      setSelectedFriendSs(createUpdatedInformation(foundFriend))
+      dispatch(
+        updateSelectedFriend(
+          createUpdatedInformation(friendInformation.foundUser)
+        )
+      )
+      setSelectedFriendSs(createUpdatedInformation(friendInformation.foundUser))
     }
-  }, [foundFriend])
+  }, [friendInformation.foundUser])
 
-  useEffect(() => {
-    if (selectedFriend) {
-      console.log(selectedFriend)
-    }
-  }, [selectedFriend])
   return { createIdConnection, goToChat }
 }
 

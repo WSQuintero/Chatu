@@ -36,10 +36,12 @@ function useSearchAndUpdateUserInfo() {
         newInformation: newInformationUser
       })
 
+      console.log(newInformationUser)
       setUserSstorage(newInformationUser)
       distpatch(updateUserLogged(newInformationUser))
     }
   }, [searchUserId.userIdFound, searchUserInfo.foundUser, newInformation])
+
   return { searchAndUpdateUser }
 }
 

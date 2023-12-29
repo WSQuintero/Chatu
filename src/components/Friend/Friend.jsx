@@ -3,11 +3,14 @@ import { CiMenuKebab } from 'react-icons/ci'
 import { IconContext } from 'react-icons/lib'
 import { MyContext } from '../../context/MyContext'
 import { useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { openModalChat } from '../../redux/slices/openChatSlice'
 
 function Friend({ friend }) {
   const [openDeleteFriendButton, setOpenDeleteFriendButton] = useState(false)
   const { deleteFriend, connectSocket } = useContext(MyContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (connectSocket.goToChat) {
@@ -40,6 +43,7 @@ function Friend({ friend }) {
             onClick={(event) => {
               event.stopPropagation()
               deleteFriend.handleDeleteFriend(friend.email)
+              dispatch(openModalChat(false))
             }}
             className='border p-1 border-green-500 hover:bg-red-500 hover:text-white rounded-md'>
             Eliminar

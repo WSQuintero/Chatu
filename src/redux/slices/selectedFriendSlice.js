@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = JSON.parse(sessionStorage.getItem('loggedUser')) || {
+const initialState = {
   name: '',
   email: '',
   friends: [],
