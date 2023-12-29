@@ -5,16 +5,18 @@ import { useUserCreationAndErrorHandling } from '../customHooks/principalHooks/u
 import { useUserRegistrationInDatabase } from '../customHooks/principalHooks/useUserRegistrationInDatabase'
 import { useSearchNewFriend } from '../customHooks/principalHooks/useSearchNewFriend'
 import { UseAddNewFriend } from '../customHooks/principalHooks/useAddNewFriend'
+import { useDeleteFriend } from '../customHooks/principalHooks/useDeleteFriend'
 
 const MyContext = createContext()
 
-function ContextProvider ({ children }) {
+function ContextProvider({ children }) {
   const searchActualUser = useFetchAndUpdateUser()
   const authenticate = useAuthenticationAndErrorHandling({ searchActualUser })
   const signUpData = useUserCreationAndErrorHandling()
   const { userRegistrationInfoDb } = useUserRegistrationInDatabase(signUpData)
   const getFriend = useSearchNewFriend()
   const addNewFriend = UseAddNewFriend()
+  const deleteFriend = useDeleteFriend()
 
   return (
     <MyContext.Provider
@@ -24,7 +26,8 @@ function ContextProvider ({ children }) {
         userRegistrationInfoDb,
         signUpData,
         getFriend,
-        addNewFriend
+        addNewFriend,
+        deleteFriend
       }}>
       {children}
     </MyContext.Provider>

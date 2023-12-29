@@ -1,7 +1,12 @@
+import { useContext, useState } from 'react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { IconContext } from 'react-icons/lib'
+import { MyContext } from '../../context/MyContext'
 
 function Friend({ friend }) {
+  const [openDeleteFriendButton, setOpenDeleteFriendButton] = useState(false)
+  const { deleteFriend } = useContext(MyContext)
+
   return (
     <article
       key={friend.uid}
@@ -20,20 +25,22 @@ function Friend({ friend }) {
         </p>
       </div>
       <div className='flex items-center gap-3'>
-        {/* {openDeleteFriendModal && (
+        {openDeleteFriendButton && (
           <button
-            onClick={deleteFriend}
+            onClick={() => deleteFriend.handleDeleteFriend(friend.email)}
             className='border p-1 border-green-500 hover:bg-red-500 hover:text-white rounded-md'>
             Eliminar
           </button>
-        )} */}
+        )}
         <IconContext.Provider
           value={{
             color: 'green',
             size: '25px',
             className: 'cursor-pointer'
           }}>
-          <CiMenuKebab onClick={() => {}} />
+          <CiMenuKebab
+            onClick={() => setOpenDeleteFriendButton(!openDeleteFriendButton)}
+          />
         </IconContext.Provider>
       </div>
     </article>

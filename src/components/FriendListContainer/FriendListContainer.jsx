@@ -16,6 +16,7 @@ function FriendListContainer() {
     (friend) =>
       friend.name.includes(filterFriend) || friend.email.includes(filterFriend)
   )
+
   const handleFilterFriend = (event) => {
     setFilterFriend(event.target.value)
   }
