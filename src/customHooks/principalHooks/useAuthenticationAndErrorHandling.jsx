@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useAuthentication } from '../useAuthentication'
 import { loginErrors } from '../../helpers/loginErrors'
+import { setUserSstorage } from '../../helpers/setUserSstorage'
 
-function useAuthenticationAndErrorHandling ({ searchActualUser }) {
+function useAuthenticationAndErrorHandling({ searchActualUser }) {
   const [errorLogin, setErrorLogin] = useState('')
   const login = useAuthentication({ searchActualUser })
 
@@ -10,7 +11,9 @@ function useAuthenticationAndErrorHandling ({ searchActualUser }) {
     if (login.authenticationError) {
       for (const i in loginErrors) {
         if (loginErrors[i] === login.authenticationError) {
-          if (i === 'emailOrPasswordError') { setErrorLogin('Usuario o contraseña errados') }
+          if (i === 'emailOrPasswordError') {
+            setErrorLogin('Usuario o contraseña errados')
+          }
           if (i === 'userDisabled') setErrorLogin('Usuario deshabilitado')
           if (i === 'tooManyRequest') setErrorLogin('Demasiados intentos')
         }
@@ -28,11 +31,10 @@ function useAuthenticationAndErrorHandling ({ searchActualUser }) {
 
   useEffect(() => {
     if (searchActualUser.userState.loggedUser.email) {
-      sessionStorage.setItem('loggedUser',
-        JSON.stringify({
-          ...searchActualUser.userState.loggedUser,
-          isUserAuthenticated: true
-        }))
+      setUserSstorage({
+        ...searchActualUser.userState.loggedUser,
+        isUserAuthenticated: true
+      })
     }
   }, [searchActualUser.userState.loggedUser])
 

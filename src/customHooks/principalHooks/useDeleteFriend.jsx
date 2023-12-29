@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux'
 import { useSearchAndUpdateUserInfo } from '../useSearchAndUpdateUserInfo'
+import { getUserSs } from '../../helpers/getUserSs'
 
 function useDeleteFriend() {
   const { searchAndUpdateUser } = useSearchAndUpdateUserInfo()
   const loggedUser = useSelector((state) => state.loggedUser)
-  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const sessionUser = getUserSs()
 
   const handleDeleteFriend = (friendEmail) => {
     const filteredUser = (

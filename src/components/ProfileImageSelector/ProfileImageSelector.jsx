@@ -3,10 +3,11 @@ import { IconContext } from 'react-icons'
 import { FaCamera } from 'react-icons/fa'
 import { MyContext } from '../../context/MyContext'
 import { useSelector } from 'react-redux'
+import { getUserSs } from '../../helpers/getUserSs'
 
 function ProfileImageSelector() {
   const { updateUserImg } = useContext(MyContext)
-  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const sessionUser = getUserSs()
   const loggedUser = useSelector((state) => state.loggedUser)
 
   return (

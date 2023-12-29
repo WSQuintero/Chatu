@@ -4,10 +4,11 @@ import { MyContext } from '../../context/MyContext'
 import { NewFriendCard } from '../NewFriendCard/NewFriendCard'
 import { SameUser } from '../SameUser/SameUser'
 import { NotFoundUser } from '../NotFoundUser/NotFoundUser'
+import { getUserSs } from '../../helpers/getUserSs'
 
 function FoundFriend({ newFriend }) {
   const loggedUser = useSelector((state) => state.loggedUser)
-  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const sessionUser = getUserSs()
   const { addNewFriend, getFriend } = useContext(MyContext)
   const sameUser = newFriend.email === (loggedUser.email || sessionUser.email)
 

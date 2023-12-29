@@ -1,21 +1,26 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { IconContext } from 'react-icons/lib'
 import { MyContext } from '../../context/MyContext'
-import { useDispatch } from 'react-redux'
-import { openModalChat } from '../../redux/slices/openChatSlice'
+import { useNavigate } from 'react-router'
 
 function Friend({ friend }) {
   const [openDeleteFriendButton, setOpenDeleteFriendButton] = useState(false)
-  const { deleteFriend } = useContext(MyContext)
-  const distpatch = useDispatch()
+  const { deleteFriend, connectSocket } = useContext(MyContext)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (connectSocket.goToChat) {
+      navigate('/chat')
+    }
+  }, [connectSocket.goToChat])
 
   return (
     <article
       key={friend.uid}
       className='h-[50px] flex border border-[#37E23B] text-xs items-center px-5 gap-5 justify-between hover:bg-[#D7FFD7] cursor-pointer'
       onClick={() => {
-        distpatch(openModalChat(true))
+        connectSocket.createIdConnection(friend.email)
       }}
       data-email={friend.email}>
       <img
@@ -32,7 +37,10 @@ function Friend({ friend }) {
       <div className='flex items-center gap-3'>
         {openDeleteFriendButton && (
           <button
-            onClick={() => deleteFriend.handleDeleteFriend(friend.email)}
+            onClick={(event) => {
+              event.stopPropagation()
+              deleteFriend.handleDeleteFriend(friend.email)
+            }}
             className='border p-1 border-green-500 hover:bg-red-500 hover:text-white rounded-md'>
             Eliminar
           </button>
@@ -44,7 +52,10 @@ function Friend({ friend }) {
             className: 'cursor-pointer'
           }}>
           <CiMenuKebab
-            onClick={() => setOpenDeleteFriendButton(!openDeleteFriendButton)}
+            onClick={(event) => {
+              event.stopPropagation()
+              setOpenDeleteFriendButton(!openDeleteFriendButton)
+            }}
           />
         </IconContext.Provider>
       </div>

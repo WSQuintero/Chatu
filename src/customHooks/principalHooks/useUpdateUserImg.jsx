@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useSearchAndUpdateUserInfo } from '../useSearchAndUpdateUserInfo'
 import { useUploadAndChargeImg } from '../useUploadAndChargeImg'
+import { getUserSs } from '../../helpers/getUserSs'
 
 function useUpdateUserImg() {
   const updateUserImg = useUploadAndChargeImg()
-  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const sessionUser = getUserSs()
   const { searchAndUpdateUser } = useSearchAndUpdateUserInfo()
 
   const handleUpdateUserImg = (file) => {

@@ -5,6 +5,7 @@ import { useUpdateInformationUser } from './useUpdateInformationUser'
 import { createUpdatedInformation } from '../helpers/createUpdatedInformation'
 import { useDispatch } from 'react-redux'
 import { updateUserLogged } from '../redux/slices/loggedUserSlice'
+import { setUserSstorage } from '../helpers/setUserSstorage'
 
 function useSearchAndUpdateUserInfo() {
   const searchUserId = useSearchIdByEmail()
@@ -35,7 +36,7 @@ function useSearchAndUpdateUserInfo() {
         newInformation: newInformationUser
       })
 
-      sessionStorage.setItem('loggedUser', JSON.stringify(newInformationUser))
+      setUserSstorage(newInformationUser)
       distpatch(updateUserLogged(newInformationUser))
     }
   }, [searchUserId.userIdFound, searchUserInfo.foundUser, newInformation])

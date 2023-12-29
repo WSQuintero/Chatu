@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { openFriendSearchModal } from '../../redux/slices/openFriendSearchModalSlice'
 import { Friend } from '../Friend/Friend'
 import { useState } from 'react'
+import { getUserSs } from '../../helpers/getUserSs'
 
 function FriendListContainer() {
   const dispatch = useDispatch()
   const loggedUser = useSelector((state) => state.loggedUser)
   const [filterFriend, setFilterFriend] = useState('')
-  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const sessionUser = getUserSs()
   const actualUser = loggedUser.email ? loggedUser : sessionUser
   const filterFriends = actualUser.friends.filter(
     (friend) =>
@@ -31,7 +32,7 @@ function FriendListContainer() {
         </span>
         <input
           type='text'
-          placeholder='Buscar por usuario'
+          placeholder='Buscar por usuario o email'
           className='w-full bg-transparent placeholder:text-[#37E23B] h-full outline-none p-3'
           onChange={handleFilterFriend}
         />

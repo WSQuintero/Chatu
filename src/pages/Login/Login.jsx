@@ -1,13 +1,17 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { MyContext } from '../../context/MyContext'
 import { useResetLoggedUser } from '../../customHooks/useResetLoggedUser'
 import { useRedirectOnAuthentication } from '../../customHooks/useRedirectOnAuthentication'
 import './Login.css'
+import { setSelectedFriendSs } from '../../helpers/setSelectedFriendSs'
+import { resetSelectedFriend } from '../../redux/slices/selectedFriendSlice'
+import { useDispatch } from 'react-redux'
 
-function Login () {
+function Login() {
   const { authenticate } = useContext(MyContext)
   useResetLoggedUser()
   useRedirectOnAuthentication()
+  const dispatch = useDispatch()
 
   const handleLogin = (event) => {
     event.preventDefault()
@@ -15,6 +19,11 @@ function Login () {
     const loginPassword = event.target.elements.loginPassword.value
     authenticate.login.authenticateUser(loginEmail, loginPassword)
   }
+
+  useEffect(() => {
+    setSelectedFriendSs('')
+    dispatch(resetSelectedFriend())
+  }, [])
 
   return (
     <main className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>
@@ -77,7 +86,9 @@ function Login () {
           <button className='h-[30px]  bg-[#37E23B] text-white mt-3 px-10  rounded-xl hover:bg-[#D7FFD7] hover:text-[#37E23B] hover:border hover:border-[#37E23B] '>
             Iniciar sesión
           </button>
-          <span className='text-red-600 text-center'>{authenticate.errorLogin}</span>
+          <span className='text-red-600 text-center'>
+            {authenticate.errorLogin}
+          </span>
         </form>
       </div>
     </main>

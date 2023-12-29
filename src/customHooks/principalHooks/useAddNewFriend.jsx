@@ -3,23 +3,24 @@ import { useSearchIdByEmail } from '../useSearchIdByEmail'
 import { useUpdateInformationUser } from '../useUpdateInformationUser'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUserLogged } from '../../redux/slices/loggedUserSlice'
+import { setUserSstorage } from '../../helpers/setUserSstorage'
+import { getUserSs } from '../../helpers/getUserSs'
 
 function UseAddNewFriend() {
   const { findUserId, userIdFound } = useSearchIdByEmail()
   const { updateUser, isOkayUpdate } = useUpdateInformationUser()
   const [friendExist, setFriendExist] = useState(false)
   const newFriend = useSelector((state) => state.newFriend)
-  const sessionUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+  const sessionUser = getUserSs()
   const loggedUser = useSelector((state) => state.loggedUser)
   const actualUser = loggedUser.email ? loggedUser : sessionUser
   const dispatch = useDispatch()
 
-  const updatedFriendOfUser = {
-    ...actualUser,
-    friends: [...actualUser.friends, newFriend]
-  }
-
   useEffect(() => {
+    const updatedFriendOfUser = {
+      ...actualUser,
+      friends: [...actualUser?.friends, newFriend]
+    }
     if (userIdFound) {
       if (
         actualUser.friends.every((friend) => friend.email !== newFriend.email)
@@ -40,8 +41,13 @@ function UseAddNewFriend() {
   }, [userIdFound])
 
   useEffect(() => {
+    const updatedFriendOfUser = {
+      ...actualUser,
+      friends: [...actualUser?.friends, newFriend]
+    }
     if (isOkayUpdate) {
-      sessionStorage.setItem('loggedUser', JSON.stringify(updatedFriendOfUser))
+      setUserSstorage(updatedFriendOfUser)
+
       dispatch(updateUserLogged(updatedFriendOfUser))
     }
   }, [isOkayUpdate])

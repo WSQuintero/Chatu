@@ -5,16 +5,17 @@ const initialState = JSON.parse(sessionStorage.getItem('loggedUser')) || {
   email: '',
   friends: [],
   uid: [],
+  messages: [],
   idConnection: '',
   perfilPhoto: '',
   isUserAuthenticated: false
 }
 
-const loggedUserSlice = createSlice({
-  name: 'loggedUser',
+const selectedFriendSlice = createSlice({
+  name: 'selectedFriend',
   initialState,
   reducers: {
-    updateUserLogged: (state, action) => {
+    updateSelectedFriend: (state, action) => {
       const {
         name,
         email,
@@ -22,7 +23,8 @@ const loggedUserSlice = createSlice({
         uid,
         idConnection,
         perfilPhoto,
-        isUserAuthenticated
+        isUserAuthenticated,
+        messages
       } = action.payload
 
       state.name = name
@@ -32,10 +34,12 @@ const loggedUserSlice = createSlice({
       state.idConnection = idConnection
       state.perfilPhoto = perfilPhoto
       state.isUserAuthenticated = isUserAuthenticated
+      state.messages = messages
     },
-    resetLoggedUser: (state, action) => initialState
+    resetSelectedFriend: (state, action) => initialState
   }
 })
 
-export const { updateUserLogged, resetLoggedUser } = loggedUserSlice.actions
-export default loggedUserSlice.reducer
+export const { updateSelectedFriend, resetSelectedFriend } =
+  selectedFriendSlice.actions
+export default selectedFriendSlice.reducer

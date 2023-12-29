@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useEffect } from 'react'
 import { useFetchAndUpdateUser } from '../customHooks/principalHooks/useFetchAndUpdateUser'
 import { useAuthenticationAndErrorHandling } from '../customHooks/principalHooks/useAuthenticationAndErrorHandling'
 import { useUserCreationAndErrorHandling } from '../customHooks/principalHooks/useUserCreationAndErrorHandling'
@@ -7,10 +7,15 @@ import { useSearchNewFriend } from '../customHooks/principalHooks/useSearchNewFr
 import { UseAddNewFriend } from '../customHooks/principalHooks/useAddNewFriend'
 import { useDeleteFriend } from '../customHooks/principalHooks/useDeleteFriend'
 import { useUpdateUserImg } from '../customHooks/principalHooks/useUpdateUserImg'
+import { useConnectSocket } from '../customHooks/principalHooks/useConnectSocket'
+import { useServerMessages } from '../customHooks/principalHooks/useServerMessages'
+import { useSelector } from 'react-redux'
 
 const MyContext = createContext()
 
 function ContextProvider({ children }) {
+  const messages = useSelector((state) => state.messages)
+
   const searchActualUser = useFetchAndUpdateUser()
   const authenticate = useAuthenticationAndErrorHandling({ searchActualUser })
   const signUpData = useUserCreationAndErrorHandling()
@@ -19,6 +24,12 @@ function ContextProvider({ children }) {
   const addNewFriend = UseAddNewFriend()
   const deleteFriend = useDeleteFriend()
   const updateUserImg = useUpdateUserImg()
+  const connectSocket = useConnectSocket()
+  useServerMessages()
+
+  useEffect(() => {
+    console.log(messages)
+  }, [messages])
 
   return (
     <MyContext.Provider
@@ -30,7 +41,8 @@ function ContextProvider({ children }) {
         getFriend,
         addNewFriend,
         deleteFriend,
-        updateUserImg
+        updateUserImg,
+        connectSocket
       }}>
       {children}
     </MyContext.Provider>

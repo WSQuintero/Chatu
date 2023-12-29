@@ -2,14 +2,14 @@ import { useDispatch } from 'react-redux'
 import { resetLoggedUser } from '../redux/slices/loggedUserSlice'
 import { newUserInformation } from '../helpers/newUserInformation'
 import { useEffect } from 'react'
+import { setUserSstorage } from '../helpers/setUserSstorage'
 
-function useResetLoggedUser () {
+function useResetLoggedUser() {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(resetLoggedUser())
-    sessionStorage.setItem('loggedUser',
-      JSON.stringify({ ...newUserInformation }))
+    setUserSstorage({ ...newUserInformation })
   }, [])
 
   return true
