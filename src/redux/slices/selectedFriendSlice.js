@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+const initialState = JSON.parse(sessionStorage.getItem('selectedFriend')) || {
   name: '',
   email: '',
   friends: [],

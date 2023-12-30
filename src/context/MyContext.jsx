@@ -9,6 +9,7 @@ import { useDeleteFriend } from '../customHooks/principalHooks/useDeleteFriend'
 import { useUpdateUserImg } from '../customHooks/principalHooks/useUpdateUserImg'
 import { useConnectSocket } from '../customHooks/principalHooks/useConnectSocket'
 import { useServerMessages } from '../customHooks/principalHooks/useServerMessages'
+import { useSendMessage } from '../customHooks/principalHooks/useSendMessage'
 
 const MyContext = createContext()
 
@@ -22,6 +23,7 @@ function ContextProvider({ children }) {
   const deleteFriend = useDeleteFriend()
   const updateUserImg = useUpdateUserImg()
   const connectSocket = useConnectSocket()
+  const sendMessage = useSendMessage()
   useServerMessages()
 
   return (
@@ -35,7 +37,8 @@ function ContextProvider({ children }) {
         addNewFriend,
         deleteFriend,
         updateUserImg,
-        connectSocket
+        connectSocket,
+        sendMessage
       }}>
       {children}
     </MyContext.Provider>

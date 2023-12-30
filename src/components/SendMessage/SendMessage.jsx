@@ -1,34 +1,14 @@
 import { LuSend } from 'react-icons/lu'
-import { socket } from '../../socket/socket'
 import { IconContext } from 'react-icons/lib'
-import { getUserSs } from '../../helpers/getUserSs'
-import { useSelector } from 'react-redux'
-import { getSelectedFriendSs } from '../../helpers/getSelectedFriendSs'
+import { useContext } from 'react'
+import { MyContext } from '../../context/MyContext'
 
 function SendMessage() {
-  const sessionUser = getUserSs()
-  const loggedUser = useSelector((state) => state.loggedUser)
-  const selectedFriend = useSelector((state) => state.selectedFriend)
-  const idConnection = useSelector((state) => state.idConnection)
-  const selectedFriendSs = getSelectedFriendSs()
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const message = event.target.elements.message.value
-    const informationToSend = {
-      message,
-      sender: (loggedUser || sessionUser).email,
-      receiver: selectedFriend.email || selectedFriendSs.email,
-      idConnection
-    }
-
-    socket.emit('message', informationToSend)
-    event.target.elements.message.value = ''
-  }
+  const { sendMessage } = useContext(MyContext)
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={sendMessage.handleSendMessage}
       className='h-1/12 bg-[#D7FFD7] flex w-full relative'>
       <textarea
         type='text'

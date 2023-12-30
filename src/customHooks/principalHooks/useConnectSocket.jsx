@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSearchUserByEmail } from '../useSearchUserByEmail'
 import { createUpdatedInformation } from '../../helpers/createUpdatedInformation'
 import { getUserSs } from '../../helpers/getUserSs'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
 import { socket } from '../../socket/socket'
 import { updateSelectedFriend } from '../../redux/slices/selectedFriendSlice'
@@ -11,19 +11,23 @@ import {
   resetIdConnection,
   updateIdConnection
 } from '../../redux/slices/idConnectionSlice'
+import { setUserSstorage } from '../../helpers/setUserSstorage'
+import { updateUserLogged } from '../../redux/slices/loggedUserSlice'
 
 function useConnectSocket() {
   const dispatch = useDispatch()
+  const loggedUser = useSelector((state) => state.loggedUser)
   const sessionUser = getUserSs()
   const friendInformation = useSearchUserByEmail()
   const [goToChat, setGoToChat] = useState(false)
-
+  const findUser = useSearchUserByEmail()
   const createIdConnection = (emailFriend) => {
     setGoToChat(false)
     friendInformation.searchUserByEmail(emailFriend)
   }
 
   const connectToRoom = (idConnection) => {
+    findUser.searchUserByEmail(loggedUser.email || sessionUser.email)
     dispatch(resetIdConnection())
     socket.emit('leave', true)
     dispatch(openModalChat(false))
@@ -63,6 +67,12 @@ function useConnectSocket() {
     }
   }, [friendInformation.foundUser])
 
+  useEffect(() => {
+    if (findUser.foundUser) {
+      setUserSstorage(createUpdatedInformation(findUser.foundUser))
+      dispatch(updateUserLogged(createUpdatedInformation(findUser.foundUser)))
+    }
+  }, [findUser.foundUser])
   return { createIdConnection, goToChat }
 }
 

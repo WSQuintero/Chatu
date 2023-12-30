@@ -42,7 +42,6 @@ function useServerMessages() {
         email: sessionUser.email,
         newInfo: { messages }
       })
-      console.log(messages)
     }
   }, [messages])
 }
