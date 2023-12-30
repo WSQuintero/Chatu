@@ -17,13 +17,13 @@ function UseAddNewFriend() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const updatedFriendOfUser = {
-      ...actualUser,
-      friends: [...actualUser?.friends, newFriend]
-    }
     if (userIdFound) {
+      const updatedFriendOfUser = {
+        ...actualUser,
+        friends: [...actualUser?.friends, newFriend]
+      }
       if (
-        actualUser.friends.every((friend) => friend.email !== newFriend.email)
+        actualUser?.friends?.every((friend) => friend.email !== newFriend.email)
       ) {
         updateUser({
           nameOfCollection: 'users',
@@ -41,11 +41,11 @@ function UseAddNewFriend() {
   }, [userIdFound])
 
   useEffect(() => {
-    const updatedFriendOfUser = {
-      ...actualUser,
-      friends: [...actualUser?.friends, newFriend]
-    }
     if (isOkayUpdate) {
+      const updatedFriendOfUser = {
+        ...actualUser,
+        friends: [...actualUser?.friends, newFriend]
+      }
       setUserSstorage(updatedFriendOfUser)
 
       dispatch(updateUserLogged(updatedFriendOfUser))

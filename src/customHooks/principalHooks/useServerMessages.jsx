@@ -9,7 +9,7 @@ function useServerMessages() {
   const dispatch = useDispatch()
   const sessionUser = getUserSs()
   const messages = useSelector((state) => state.messages)
-  const [test, setTest] = useState([])
+  const [test, setTest] = useState(null)
   const { searchAndUpdateUser } = useSearchAndUpdateUserInfo()
 
   useEffect(() => {
@@ -29,10 +29,13 @@ function useServerMessages() {
   }, [])
 
   useEffect(() => {
-    if (!messages) {
-      dispatch(updateMessages(sessionUser.messages))
-    } else {
-      dispatch(updateMessages([...messages, test]))
+    if (test) {
+      console.log(messages)
+      if (messages) {
+        dispatch(updateMessages([...messages, test]))
+      } else {
+        dispatch(updateMessages([...sessionUser.messages, test]))
+      }
     }
   }, [test])
 
