@@ -11,6 +11,5 @@ const idConnectionSlice = createSlice({
   }
 })
 
-export const { updateIdConnection, resetIdConnection } =
-  idConnectionSlice.actions
+export const setIdConnection = idConnectionSlice.actions
 export default idConnectionSlice.reducer

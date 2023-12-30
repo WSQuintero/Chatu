@@ -7,12 +7,9 @@ import { openModalChat } from '../../redux/slices/openChatSlice'
 import { socket } from '../../socket/socket'
 import { updateSelectedFriend } from '../../redux/slices/selectedFriendSlice'
 import { setSelectedFriendSs } from '../../helpers/setSelectedFriendSs'
-import {
-  resetIdConnection,
-  updateIdConnection
-} from '../../redux/slices/idConnectionSlice'
 import { setUserSstorage } from '../../helpers/setUserSstorage'
 import { updateUserLogged } from '../../redux/slices/loggedUserSlice'
+import { setIdConnection } from '../../redux/slices/idConnectionSlice'
 
 function useConnectSocket() {
   const dispatch = useDispatch()
@@ -21,6 +18,7 @@ function useConnectSocket() {
   const friendInformation = useSearchUserByEmail()
   const [goToChat, setGoToChat] = useState(false)
   const findUser = useSearchUserByEmail()
+
   const createIdConnection = (emailFriend) => {
     setGoToChat(false)
     friendInformation.searchUserByEmail(emailFriend)
@@ -28,9 +26,10 @@ function useConnectSocket() {
 
   const connectToRoom = (idConnection) => {
     findUser.searchUserByEmail(loggedUser.email || sessionUser.email)
-    dispatch(resetIdConnection())
-    socket.emit('leave', true)
+    dispatch(setIdConnection.resetIdConnection())
     dispatch(openModalChat(false))
+    socket.emit('leave', true)
+
     const connectionData = {
       id: idConnection,
       sender: sessionUser.email
@@ -38,7 +37,7 @@ function useConnectSocket() {
 
     socket.on('joinResponse', (response) => {
       if (response.success) {
-        dispatch(updateIdConnection(idConnection))
+        dispatch(setIdConnection.updateIdConnection(idConnection))
         // console.log(`Usuario unido exitosamente a la sala: ${idConnection}`)
         window.innerWidth < 800
           ? setGoToChat(true)
