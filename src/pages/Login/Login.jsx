@@ -1,18 +1,12 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { MyContext } from '../../context/MyContext'
 import { useRedirectOnAuthentication } from '../../customHooks/useRedirectOnAuthentication'
-import { setSelectedFriendSs } from '../../helpers/setSelectedFriendSs'
-import { resetSelectedFriend } from '../../redux/slices/selectedFriendSlice'
-import { useDispatch } from 'react-redux'
-import { updateUserLogged } from '../../redux/slices/loggedUserSlice'
-import { setUserSstorage } from '../../helpers/setUserSstorage'
-import { useResetLoggedUser } from '../../customHooks/useResetLoggedUser'
+import { useResetSession } from '../../customHooks/useResetSession'
 import './Login.css'
 
 function Login() {
   const { authenticate } = useContext(MyContext)
-  const dispatch = useDispatch()
-  useResetLoggedUser()
+  useResetSession()
   useRedirectOnAuthentication()
 
   const handleLogin = (event) => {
@@ -21,13 +15,6 @@ function Login() {
     const loginPassword = event.target.elements.loginPassword.value
     authenticate.login.authenticateUser(loginEmail, loginPassword)
   }
-
-  useEffect(() => {
-    setSelectedFriendSs('')
-    dispatch(resetSelectedFriend())
-    dispatch(updateUserLogged({}))
-    setUserSstorage({})
-  }, [])
 
   return (
     <main className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>

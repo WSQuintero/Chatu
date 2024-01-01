@@ -8,10 +8,13 @@ import { resetSelectedFriend } from '../../redux/slices/selectedFriendSlice'
 import { useDispatch } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
 import { MyContext } from '../../context/MyContext'
+import { Logout } from '../../components/Logout/Logout'
+import { useObserveStateAuth } from '../../customHooks/principalHooks/useObserveStateAuth'
 
 function ActiveChats() {
   const dispatch = useDispatch()
   const { connectSocket } = useContext(MyContext)
+  useObserveStateAuth()
 
   useEffect(() => {
     setSelectedFriendSs('')
@@ -22,6 +25,7 @@ function ActiveChats() {
 
   return (
     <Main>
+      <Logout />
       <ProfileImageSelector />
       <FriendListContainer />
       <ModalSearchFriend />

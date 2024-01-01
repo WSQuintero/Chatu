@@ -15,9 +15,9 @@ function ProfileImageSelector() {
       <div className='w-[100px] h-[100px]  overflow-hidden bg-white rounded-full object-cover'>
         <img
           src={
-            updateUserImg.imgUrl ||
-            sessionUser.perfilPhoto ||
-            loggedUser.perfilPhoto ||
+            updateUserImg?.imgUrl ||
+            sessionUser?.perfilPhoto ||
+            loggedUser?.perfilPhoto ||
             '/img/no-user.jpg'
           }
           alt='User image'
@@ -31,7 +31,7 @@ function ProfileImageSelector() {
             accept='image/*'
             className='bg-transparent hidden'
             onChange={(event) =>
-              updateUserImg.handleUpdateUserImg(event.target.files[0])
+              updateUserImg?.handleUpdateUserImg(event.target.files[0])
             }
           />
           <IconContext.Provider
