@@ -2,12 +2,13 @@ import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MyContext } from '../context/MyContext'
 
-function useRedirectOnAuthentication () {
+function useRedirectOnAuthentication() {
   const { authenticate } = useContext(MyContext)
 
   const navigate = useNavigate()
 
   useEffect(() => {
+    authenticate.login.setAuthenticatedUser(null)
     if (authenticate.login.authenticatedUser) {
       if (window.innerWidth >= 800) {
         navigate('/chat-desktop')

@@ -19,13 +19,11 @@ function useSearchAndUpdateUserInfo() {
     searchUserInfo.searchUserByEmail(email)
     setNewInformation(newInfo)
   }
+  const userFound =
+    searchUserId.userIdFound && searchUserInfo.foundUser && newInformation
 
   useEffect(() => {
-    if (
-      searchUserId.userIdFound &&
-      searchUserInfo.foundUser &&
-      newInformation
-    ) {
+    if (userFound) {
       const newInformationUser = {
         ...createUpdatedInformation(searchUserInfo.foundUser),
         ...newInformation
@@ -36,7 +34,6 @@ function useSearchAndUpdateUserInfo() {
         newInformation: newInformationUser
       })
 
-      console.log(newInformationUser)
       setUserSstorage(newInformationUser)
       distpatch(updateUserLogged(newInformationUser))
     }

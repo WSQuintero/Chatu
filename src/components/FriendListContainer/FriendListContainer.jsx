@@ -12,10 +12,11 @@ function FriendListContainer() {
   const loggedUser = useSelector((state) => state.loggedUser)
   const [filterFriend, setFilterFriend] = useState('')
   const sessionUser = getUserSs()
-  const actualUser = loggedUser.email ? loggedUser : sessionUser
-  const filterFriends = actualUser.friends.filter(
+  const actualUser = loggedUser?.email ? loggedUser : sessionUser
+  const filterFriends = actualUser?.friends?.filter(
     (friend) =>
-      friend.name.includes(filterFriend) || friend.email.includes(filterFriend)
+      friend?.name?.includes(filterFriend) ||
+      friend?.email?.includes(filterFriend)
   )
 
   const handleFilterFriend = (event) => {
@@ -47,13 +48,13 @@ function FriendListContainer() {
         </IconContext.Provider>
       </button>
       {filterFriend
-        ? filterFriends.map((friend) => (
+        ? filterFriends?.map((friend) => (
             <Friend friend={friend} key={friend.uid} />
           ))
-        : actualUser.friends.map((friend) => (
+        : actualUser?.friends?.map((friend) => (
             <Friend friend={friend} key={friend.uid} />
           ))}
-      {filterFriends.length < 1 && <p>No se encontró usuario</p>}
+      {filterFriends?.length < 1 && <p>No se encontró usuario</p>}
     </div>
   )
 }

@@ -39,6 +39,8 @@ function useConnectSocket() {
       if (response.success) {
         dispatch(setIdConnection.updateIdConnection(idConnection))
         // console.log(`Usuario unido exitosamente a la sala: ${idConnection}`)
+        setGoToChat(false)
+
         window.innerWidth < 800
           ? setGoToChat(true)
           : dispatch(openModalChat(true))
@@ -51,7 +53,7 @@ function useConnectSocket() {
   }
 
   useEffect(() => {
-    if (friendInformation.foundUser) {
+    if (friendInformation.foundUser && sessionUser.isUserAuthenticated) {
       const friendUid = createUpdatedInformation(
         friendInformation.foundUser
       ).uid
@@ -72,7 +74,7 @@ function useConnectSocket() {
       dispatch(updateUserLogged(createUpdatedInformation(findUser.foundUser)))
     }
   }, [findUser.foundUser])
-  return { createIdConnection, goToChat }
+  return { createIdConnection, goToChat, setGoToChat }
 }
 
 export { useConnectSocket }

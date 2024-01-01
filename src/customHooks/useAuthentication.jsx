@@ -24,7 +24,12 @@ function useAuthentication({ searchActualUser }) {
       })
   }
 
-  return { authenticateUser, authenticatedUser, authenticationError }
+  return {
+    authenticateUser,
+    authenticatedUser,
+    authenticationError,
+    setAuthenticatedUser
+  }
 }
 
 export { useAuthentication }

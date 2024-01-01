@@ -1,18 +1,19 @@
 import { useContext, useEffect } from 'react'
 import { MyContext } from '../../context/MyContext'
-import { useResetLoggedUser } from '../../customHooks/useResetLoggedUser'
 import { useRedirectOnAuthentication } from '../../customHooks/useRedirectOnAuthentication'
-import './Login.css'
 import { setSelectedFriendSs } from '../../helpers/setSelectedFriendSs'
 import { resetSelectedFriend } from '../../redux/slices/selectedFriendSlice'
 import { useDispatch } from 'react-redux'
-import { resetLoggedUser } from '../../redux/slices/loggedUserSlice'
+import { updateUserLogged } from '../../redux/slices/loggedUserSlice'
+import { setUserSstorage } from '../../helpers/setUserSstorage'
+import { useResetLoggedUser } from '../../customHooks/useResetLoggedUser'
+import './Login.css'
 
 function Login() {
   const { authenticate } = useContext(MyContext)
+  const dispatch = useDispatch()
   useResetLoggedUser()
   useRedirectOnAuthentication()
-  const dispatch = useDispatch()
 
   const handleLogin = (event) => {
     event.preventDefault()
@@ -24,7 +25,8 @@ function Login() {
   useEffect(() => {
     setSelectedFriendSs('')
     dispatch(resetSelectedFriend())
-    dispatch(resetLoggedUser())
+    dispatch(updateUserLogged({}))
+    setUserSstorage({})
   }, [])
 
   return (
