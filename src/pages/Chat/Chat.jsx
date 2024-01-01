@@ -21,7 +21,6 @@ function Chat() {
 
   useEffect(() => {
     window.addEventListener('popstate', handleBackButton)
-    console.log('si')
     return () => {
       window.removeEventListener('popstate', handleBackButton)
     }
