@@ -8,6 +8,7 @@ import newFriendReducer from './slices/newFriendSlice'
 import openChatReducer from './slices/openChatSlice'
 import messagesReducer from './slices/messagesSlice'
 import idConnectionReducer from './slices/idConnectionSlice'
+import backToActChatsReducer from './slices/backToActChatsSlice'
 
 const store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
     isOpenChat: openChatReducer,
     selectedFriend: selectedFriendReducer,
     messages: messagesReducer,
-    idConnection: idConnectionReducer
+    idConnection: idConnectionReducer,
+    backToActChats: backToActChatsReducer
   }
 })
 

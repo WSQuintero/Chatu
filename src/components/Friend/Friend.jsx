@@ -3,20 +3,26 @@ import { CiMenuKebab } from 'react-icons/ci'
 import { IconContext } from 'react-icons/lib'
 import { MyContext } from '../../context/MyContext'
 import { useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
 
 function Friend({ friend }) {
   const [openDeleteFriendButton, setOpenDeleteFriendButton] = useState(false)
   const { deleteFriend, connectSocket } = useContext(MyContext)
+  const backToActChats = useSelector((state) => state.backToActChats)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (connectSocket.goToChat) {
-      navigate('/chat')
+    connectSocket.setGoToChat(false)
+    if (!backToActChats) {
+      if (connectSocket.goToChat) {
+        navigate('/chat')
+      } else {
+        navigate('/active-chats')
+      }
     }
-  }, [connectSocket.goToChat])
+  }, [connectSocket.goToChat, backToActChats])
 
   return (
     <article
