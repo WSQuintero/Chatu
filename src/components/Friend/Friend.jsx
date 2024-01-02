@@ -5,7 +5,7 @@ import { MyContext } from '../../context/MyContext'
 import { useNavigate } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
-import { updateBackToActChats } from '../../redux/slices/backToActChatsSlice'
+// import { updateBackToActChats } from '../../redux/slices/backToActChatsSlice'
 
 function Friend({ friend }) {
   const [openDeleteFriendButton, setOpenDeleteFriendButton] = useState(false)
