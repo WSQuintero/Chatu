@@ -21,12 +21,11 @@ function useSendMessage() {
       receiver: selectedFriend?.email || selectedFriendSs?.email,
       idConnection
     }
-    console.log(informationToSend)
     emitMessage(informationToSend, event)
-    // searchAndUpdateFriend({
-    //   email: selectedFriend?.email || selectedFriendSs?.email,
-    //   newInfo: informationToSend
-    // })
+    searchAndUpdateFriend({
+      email: selectedFriend?.email || selectedFriendSs?.email,
+      newInfo: informationToSend
+    })
   }
 
   const emitMessage = (informationToSend, event) => {
