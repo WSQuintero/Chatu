@@ -9,7 +9,7 @@ export default defineConfig({
       '/(.*)': {
         target:
           //  'http://localhost:3001',
-          'https://chatu-backend-dev-aktd.1.us-1.fl0.io',
+          'https://chatu-back-two.onrender.com',
         ws: true
       }
     }
