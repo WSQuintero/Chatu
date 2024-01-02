@@ -16,14 +16,12 @@ function Friend({ friend }) {
 
   useEffect(() => {
     connectSocket.setGoToChat(false)
-    if (!backToActChats) {
-      if (connectSocket.goToChat) {
-        navigate('/chat')
-      } else {
-        if (window.innerWidth < 800) {
-          navigate('/active-chats')
-          dispatch(updateBackToActChats(false))
-        }
+
+    if (connectSocket.goToChat) {
+      navigate('/chat')
+    } else {
+      if (window.innerWidth < 800) {
+        navigate('/active-chats')
       }
     }
   }, [connectSocket.goToChat, backToActChats])
