@@ -23,6 +23,11 @@ function useUpdateNewFriendInDb() {
         (friend) => friend.email !== newFriend.email
       )
       if (friendNoExist) {
+        console.log({
+          nameOfCollection: 'users',
+          idDocument: userIdFound,
+          newInformation: updatedFriendOfUser
+        })
         updateUser({
           nameOfCollection: 'users',
           idDocument: userIdFound,

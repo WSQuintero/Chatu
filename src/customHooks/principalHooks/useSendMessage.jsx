@@ -21,7 +21,7 @@ function useSendMessage() {
       receiver: selectedFriend.email || selectedFriendSs.email,
       idConnection
     }
-
+    console.log(informationToSend)
     emitMessage(informationToSend, event)
     searchAndUpdateFriend({
       email: selectedFriend.email || selectedFriendSs.email,
