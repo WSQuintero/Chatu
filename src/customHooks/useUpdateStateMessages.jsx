@@ -10,6 +10,7 @@ function useUpdateStateMessages(test) {
 
   useEffect(() => {
     if (test) {
+      console.log(test)
       if (messages) {
         dispatch(updateMessages([...messages, test]))
       } else {
