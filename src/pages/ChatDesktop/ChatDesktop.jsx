@@ -8,7 +8,7 @@ function ChatDesktop() {
 
   return (
     <Main>
-      <div className='flex w-[90%]'>
+      <div className='flex w-full gap-5 p-5'>
         <ActiveChats />
         {isOpenChat.isOpen && <Chat />}
       </div>
