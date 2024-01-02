@@ -8,16 +8,16 @@ function ChatMessages() {
   const loggedUser = useSelector((state) => state.loggedUser)
 
   return (
-    <ul className='h-11/12 p-5 bg-white w-full gap-5 flex flex-col overflow-auto '>
+    <ul className='h-11/12 px-10 py-4 bg-white w-full gap-5 flex flex-col overflow-auto '>
       {(loggedUser.messages || sessionUser.messages)
         .filter((mss) => mss.idConnection === idConnection)
         .map((message, index) =>
           message.sender === sessionUser.email ? (
-            <li key={index} className='flex justify-end gap-2 ml-2'>
+            <li key={index} className='flex justify-end gap-2'>
               <p className=' break-all bg-[#D7FFD7] w-auto px-5 rounded-bl-2xl'>
                 {message.message}
               </p>
-              <span className='break-all w-1/5 '> {sessionUser.name}</span>
+              <span className='break-all'> {sessionUser.name}</span>
             </li>
           ) : message.sender === friend.email ? (
             <li key={index} className='flex justify-start gap-2 text-[#088AE1]'>
