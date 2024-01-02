@@ -13,7 +13,7 @@ function Friend({ friend }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (window.innerWidth < 800) {
+    if (window.innerWidth < 800 && connectSocket.goToChat) {
       navigate('/chat')
     }
   }, [connectSocket.goToChat])
