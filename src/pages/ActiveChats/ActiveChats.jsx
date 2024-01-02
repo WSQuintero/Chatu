@@ -4,7 +4,7 @@ import { ModalSearchFriend } from '../../components/ModalSearchFriend/ModalSearc
 import { useContext, useEffect } from 'react'
 import { setSelectedFriendSs } from '../../helpers/setSelectedFriendSs'
 import { resetSelectedFriend } from '../../redux/slices/selectedFriendSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
 import { MyContext } from '../../context/MyContext'
 import { Logout } from '../../components/Logout/Logout'

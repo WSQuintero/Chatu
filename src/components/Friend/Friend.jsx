@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CiMenuKebab } from 'react-icons/ci'
 import { IconContext } from 'react-icons/lib'
 import { MyContext } from '../../context/MyContext'
@@ -12,15 +12,17 @@ function Friend({ friend }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if (window.innerWidth < 800) {
+      navigate('/chat')
+    }
+  }, [connectSocket.goToChat])
   return (
     <article
       key={friend.uid}
       className='h-[50px] flex border border-[#37E23B] text-xs items-center px-5 gap-5 justify-between hover:bg-[#D7FFD7] cursor-pointer'
       onClick={() => {
         connectSocket.createIdConnection(friend.email)
-        if (window.innerWidth < 800) {
-          navigate('/chat')
-        }
       }}
       data-email={friend.email}>
       <img
