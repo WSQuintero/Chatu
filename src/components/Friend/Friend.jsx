@@ -15,8 +15,6 @@ function Friend({ friend }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    connectSocket.setGoToChat(false)
-
     if (connectSocket.goToChat) {
       navigate('/chat')
     } else {
