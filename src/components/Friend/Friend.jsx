@@ -4,11 +4,13 @@ import { IconContext } from 'react-icons/lib'
 import { MyContext } from '../../context/MyContext'
 import { useDispatch } from 'react-redux'
 import { openModalChat } from '../../redux/slices/openChatSlice'
+import { useNavigate } from 'react-router'
 
 function Friend({ friend }) {
   const [openDeleteFriendButton, setOpenDeleteFriendButton] = useState(false)
   const { deleteFriend, connectSocket } = useContext(MyContext)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   return (
     <article
@@ -16,6 +18,9 @@ function Friend({ friend }) {
       className='h-[50px] flex border border-[#37E23B] text-xs items-center px-5 gap-5 justify-between hover:bg-[#D7FFD7] cursor-pointer'
       onClick={() => {
         connectSocket.createIdConnection(friend.email)
+        if (window.innerWidth < 800) {
+          navigate('/chat')
+        }
       }}
       data-email={friend.email}>
       <img

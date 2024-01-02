@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router'
 function ActiveChats() {
   const dispatch = useDispatch()
   const { connectSocket } = useContext(MyContext)
-  const isOpenChat = useSelector((state) => state.isOpenChat)
   const navigate = useNavigate()
   useObserveStateAuth()
 
@@ -26,11 +25,7 @@ function ActiveChats() {
   }, [])
 
   useEffect(() => {
-    if (connectSocket.goToChat && isOpenChat) {
-      if (window.innerWidth < 800) {
-        navigate('/chat')
-      }
-    } else {
+    if (!connectSocket.goToChat) {
       if (window.innerWidth < 800) {
         navigate('/active-chats')
       }
