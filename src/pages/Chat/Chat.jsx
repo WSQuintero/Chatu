@@ -2,13 +2,14 @@ import { SendMessage } from '../../components/SendMessage/SendMessage'
 import { ChatMessages } from '../../components/ChatMessages/ChatMessages'
 import { useContext, useEffect, useRef } from 'react'
 import { MyContext } from '../../context/MyContext'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
+import { Main } from '../../components/Main/Main'
 
 function Chat() {
   const { connectSocket } = useContext(MyContext)
   const containerChat = useRef()
   const navigate = useNavigate()
-
+  const location = useLocation()
   const handleBackButton = (event) => {
     if (window.innerWidth < 800) {
       connectSocket.setGoToChat(false)
@@ -27,14 +28,26 @@ function Chat() {
   }, [])
 
   return (
-    <section
-      className=' w-full h-[100vh] relative flex flex-col justify-center items-center'
-      ref={containerChat}>
-      <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-green-950 shadow-xl  justify-end text-[#37E23B]'>
-        <ChatMessages />
-        <SendMessage />
-      </div>
-    </section>
+    <>
+      {window.innerWidth < 800 && location.pathname === '/chat' ? (
+        <Main ref={containerChat}>
+          <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-green-950 shadow-xl  justify-end text-[#37E23B]'>
+            <ChatMessages />
+            <SendMessage />
+          </div>
+        </Main>
+      ) : (
+        <section
+          className=' w-full h-[100vh] relative flex flex-col justify-center items-center'
+          ref={containerChat}>
+          {' '}
+          <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-green-950 shadow-xl  justify-end text-[#37E23B]'>
+            <ChatMessages />
+            <SendMessage />
+          </div>
+        </section>
+      )}
+    </>
   )
 }
 

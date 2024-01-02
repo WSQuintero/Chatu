@@ -17,6 +17,7 @@ function Friend({ friend }) {
       navigate('/chat')
     }
   }, [connectSocket.goToChat])
+
   return (
     <article
       key={friend.uid}

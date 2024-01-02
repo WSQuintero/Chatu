@@ -9,12 +9,15 @@ import { openModalChat } from '../../redux/slices/openChatSlice'
 import { MyContext } from '../../context/MyContext'
 import { Logout } from '../../components/Logout/Logout'
 import { useObserveStateAuth } from '../../customHooks/principalHooks/useObserveStateAuth'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
+import { Main } from '../../components/Main/Main'
 
 function ActiveChats() {
   const dispatch = useDispatch()
   const { connectSocket } = useContext(MyContext)
   const navigate = useNavigate()
+  const location = useLocation()
+
   useObserveStateAuth()
 
   useEffect(() => {
@@ -33,12 +36,23 @@ function ActiveChats() {
   }, [connectSocket.goToChat])
 
   return (
-    <section className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>
-      <Logout />
-      <ProfileImageSelector />
-      <FriendListContainer />
-      <ModalSearchFriend />
-    </section>
+    <>
+      {window.innerWidth < 800 && location.pathname === '/active-chats' ? (
+        <Main>
+          <Logout />
+          <ProfileImageSelector />
+          <FriendListContainer />
+          <ModalSearchFriend />
+        </Main>
+      ) : (
+        <section className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>
+          <Logout />
+          <ProfileImageSelector />
+          <FriendListContainer />
+          <ModalSearchFriend />
+        </section>
+      )}
+    </>
   )
 }
 
