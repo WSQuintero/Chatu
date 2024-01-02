@@ -9,7 +9,7 @@ function SendMessage() {
   return (
     <form
       onSubmit={sendMessage.handleSendMessage}
-      className='h-1/12 bg-[#D7FFD7] flex w-full relative'>
+      className='h-1/12 bg-[#D7FFD7] flex w-full relative border border-green-500'>
       <textarea
         type='text'
         placeholder='Escribe tu mensaje...'
