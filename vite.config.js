@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       '/(.*)': {
         target:
-          // "http://localhost:3001",
+          //  'http://localhost:3001',
           'https://chatu-backend-dev-aktd.1.us-1.fl0.io',
         ws: true
       }
