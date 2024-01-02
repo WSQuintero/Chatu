@@ -6,9 +6,9 @@ const backToActChatsSlice = createSlice({
   name: 'backToActChats',
   initialState,
   reducers: {
-    updateBackToActChatsSlice: (state, action) => action.payload
+    updateBackToActChats: (state, action) => action.payload
   }
 })
 
-export const { updateBackToActChatsSlice } = backToActChatsSlice.actions
+export const { updateBackToActChats } = backToActChatsSlice.actions
 export default backToActChatsSlice.reducer
