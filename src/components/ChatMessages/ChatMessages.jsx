@@ -8,7 +8,7 @@ function ChatMessages() {
   const loggedUser = useSelector((state) => state.loggedUser)
 
   return (
-    <ul className='h-11/12 pt bg-white w-full gap-5 flex flex-col overflow-auto '>
+    <ul className='h-11/12 p-5 bg-white w-full gap-5 flex flex-col overflow-auto '>
       {(loggedUser.messages || sessionUser.messages)
         .filter((mss) => mss.idConnection === idConnection)
         .map((message, index) =>
