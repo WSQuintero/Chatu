@@ -17,6 +17,9 @@ function Chat() {
 
   useEffect(() => {
     window.addEventListener('popstate', handleBackButton)
+    if (connectSocket.goToChat) {
+      if (window.innerWidth < 800) navigate('/active-chats')
+    }
     return () => {
       window.removeEventListener('popstate', handleBackButton)
     }
