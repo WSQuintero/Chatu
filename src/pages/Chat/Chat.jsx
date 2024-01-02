@@ -3,19 +3,19 @@ import { ChatMessages } from '../../components/ChatMessages/ChatMessages'
 import { useContext, useEffect } from 'react'
 import { MyContext } from '../../context/MyContext'
 import { useNavigate } from 'react-router'
-import { useDispatch } from 'react-redux'
-import { updateBackToActChatsSlice } from '../../redux/slices/backToActChatsSlice'
+// import { useDispatch } from 'react-redux'
+// import { updateBackToActChatsSlice } from '../../redux/slices/backToActChatsSlice'
 
 function Chat() {
   const { connectSocket } = useContext(MyContext)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   const handleBackButton = (event) => {
     if (window.innerWidth < 800) {
       connectSocket.setGoToChat(false)
       navigate('/active-chats')
-      dispatch(updateBackToActChatsSlice(true))
+      // dispatch(updateBackToActChatsSlice(true))
     }
   }
 
