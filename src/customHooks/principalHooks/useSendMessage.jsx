@@ -17,7 +17,7 @@ function useSendMessage() {
     const message = event.target.elements.message.value
     const informationToSend = {
       message,
-      sender: (loggedUser || sessionUser).email,
+      sender: loggedUser.email || sessionUser.email,
       receiver: selectedFriend.email || selectedFriendSs.email,
       idConnection
     }

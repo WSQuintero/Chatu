@@ -19,7 +19,7 @@ function Friend({ friend }) {
       if (connectSocket.goToChat) {
         navigate('/chat')
       } else {
-        navigate('/active-chats')
+        if (window.innerWidth < 800) navigate('/active-chats')
       }
     }
   }, [connectSocket.goToChat, backToActChats])
