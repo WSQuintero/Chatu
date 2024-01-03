@@ -18,7 +18,6 @@ function Chat() {
   }
 
   useEffect(() => {
-    containerChat.current.scrollTop = containerChat.current.scrollHeight
     connectSocket.setGoToChat(false)
     window.addEventListener('popstate', handleBackButton)
 
