@@ -4,7 +4,7 @@ import { newUserInformation } from '../../helpers/newUserInformation'
 import { useNavigate } from 'react-router'
 import './SignUp.css'
 
-function SignUp () {
+function SignUp() {
   const navigate = useNavigate()
 
   const { signUpData, userRegistrationInfoDb } = useContext(MyContext)
@@ -19,19 +19,25 @@ function SignUp () {
 
     if (SignUpPassword === repeatPassword) {
       signUpData.signUp.signUpUser(SignUpEmail, SignUpPassword)
-      signUpData.newUserState.updateNewUser({ ...newUserInformation, email: SignUpEmail, name: SignUpUser })
+      signUpData.newUserState.updateNewUser({
+        ...newUserInformation,
+        email: SignUpEmail,
+        name: SignUpUser
+      })
     } else {
-      signUpData.signUpErrorData.setErrorSignUp('Las contraseñas deben coincidir')
+      signUpData.signUpErrorData.setErrorSignUp(
+        'Las contraseñas deben coincidir'
+      )
     }
   }
 
   useEffect(() => {
-    if (userRegistrationInfoDb.addedUserInfoConfirmation)navigate('/')
+    if (userRegistrationInfoDb.addedUserInfoConfirmation) navigate('/')
   }, [userRegistrationInfoDb.addedUserInfoConfirmation])
 
   return (
-    <main className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>
-      <div className='sm:w-3/5 sm:h-auto sm:max-h-[90%] w-[90%] h-[96%] bg-white rounded-3xl shadow-green-950 shadow-xl flex justify-center text-[#37E23B]'>
+    <main className='bg-gradient-to-r from-white to-lighterGreen w-full h-[100vh] relative flex flex-col justify-center items-center'>
+      <div className='sm:w-3/5 sm:h-auto sm:max-h-[90%] w-[90%] h-[96%] bg-white rounded-3xl shadow-darkGreen shadow-xl flex justify-center text-green'>
         <figure className=' h-full w-6/12 relative hidden lg:flex'>
           <img
             src='/img/chica-señalando.jpg '
@@ -50,7 +56,7 @@ function SignUp () {
           <h2>Registro de usuario</h2>
           <label
             htmlFor='SignUpUser'
-            className='h-1/6 w-full flex items-center gap-3  border-b border-[#37E23B] '>
+            className='h-1/6 w-full flex items-center gap-3  border-b border-green '>
             <span>
               <img
                 src='/svg/user.svg'
@@ -62,14 +68,14 @@ function SignUp () {
               type='text'
               placeholder='Nombre de usuario'
               required
-              className='placeholder:text-[#37E23B] w-full'
+              className='placeholder:text-green w-full'
               name='SignUpUser'
               id='SignUpUser'
             />
           </label>
           <label
             htmlFor='SignUpEmail'
-            className='h-1/6 w-full flex items-center gap-3  border-b border-[#37E23B] '>
+            className='h-1/6 w-full flex items-center gap-3  border-b border-green '>
             <span>
               <img
                 src='/svg/email.svg'
@@ -81,14 +87,14 @@ function SignUp () {
               type='email'
               placeholder='Correo electrónico'
               required
-              className='placeholder:text-[#37E23B] w-full'
+              className='placeholder:text-green w-full'
               name='SignUpEmail'
               id='SignUpEmail'
             />
           </label>
           <label
             htmlFor='SignUpPassword'
-            className='h-1/6 w-full flex items-center gap-3  border-b border-[#37E23B]'>
+            className='h-1/6 w-full flex items-center gap-3  border-b border-green'>
             <span>
               <img
                 src='/svg/Password.svg'
@@ -100,14 +106,14 @@ function SignUp () {
               type='password'
               placeholder='Contraseña'
               required
-              className='placeholder:text-[#37E23B] w-full'
+              className='placeholder:text-green w-full'
               name='SignUpPassword'
               id='SignUpPassword'
             />
           </label>
           <label
             htmlFor='repeatPassword'
-            className='h-1/6 w-full flex items-center gap-3  border-b border-[#37E23B]'>
+            className='h-1/6 w-full flex items-center gap-3  border-b border-green'>
             <span>
               <img
                 src='/svg/Password.svg'
@@ -119,16 +125,18 @@ function SignUp () {
               type='password'
               placeholder='Repetir contraseña'
               required
-              className='placeholder:text-[#37E23B] w-full'
+              className='placeholder:text-green w-full'
               name='repeatPassword'
               id='repeatPassword'
             />
           </label>
           <div className='relative w-full'></div>
-          <button className='  bg-[#37E23B] text-white p-1 px-6  rounded-xl hover:bg-[#D7FFD7] border border-[#37E23B] hover:text-[#37E23B] hover:border hover:border-[#37E23B]  text-xs'>
+          <button className='  bg-green text-white p-1 px-6  rounded-xl hover:bg-lightestGreen border border-green hover:text-green hover:border hover:border-green  text-xs'>
             Registrar usuario
           </button>
-          <span className='text-red-600 text-center'>{signUpData.signUpErrorData.errorSignUp}</span>
+          <span className='text-textRed text-center'>
+            {signUpData.signUpErrorData.errorSignUp}
+          </span>
         </form>
       </div>
     </main>

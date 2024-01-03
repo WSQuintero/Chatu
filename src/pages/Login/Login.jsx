@@ -17,8 +17,8 @@ function Login() {
   }
 
   return (
-    <main className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>
-      <div className='sm:w-3/5 sm:h-4/5 w-[80%] h-5/6 bg-white rounded-3xl shadow-green-950 shadow-xl flex justify-center text-[#37E23B]'>
+    <main className='bg-gradient-to-r from-white to-lighterGreen w-full h-[100vh] relative flex flex-col justify-center items-center'>
+      <div className='sm:w-3/5 sm:h-4/5 w-[80%] h-5/6 bg-white rounded-3xl shadow-darkGreen shadow-xl flex justify-center text-green'>
         <figure className=' h-full w-6/12 relative hidden lg:flex'>
           <img
             src='/img/chica-texteando.jpg '
@@ -33,7 +33,7 @@ function Login() {
           <h2>Inicio de sesión</h2>
           <label
             htmlFor='loginEmail'
-            className='h-1/6 w-full flex items-center gap-3  border-b border-[#37E23B] '>
+            className='h-1/6 w-full flex items-center gap-3  border-b border-green '>
             <span>
               <img
                 src='/svg/email.svg'
@@ -45,14 +45,14 @@ function Login() {
               type='email'
               placeholder='Correo electrónico'
               required
-              className='placeholder:text-[#37E23B] w-full'
+              className='placeholder:text-green w-full'
               name='loginEmail'
               id={'loginEmail'}
             />
           </label>
           <label
             htmlFor='loginPassword'
-            className='h-1/6 w-full flex items-center gap-3  border-b border-[#37E23B]'>
+            className='h-1/6 w-full flex items-center gap-3  border-b border-green'>
             <span>
               <img
                 src='/svg/Password.svg'
@@ -64,7 +64,7 @@ function Login() {
               type='password'
               placeholder='Contraseña'
               required
-              className='placeholder:text-[#37E23B] w-full'
+              className='placeholder:text-green w-full'
               name='loginPassword'
               id='loginPassword'
             />
@@ -74,10 +74,10 @@ function Login() {
               <a href='/sign-up'>¿No tienes cuenta aún?</a>
             </span>
           </div>
-          <button className='h-[30px]  bg-[#37E23B] text-white mt-3 px-10  rounded-xl hover:bg-[#D7FFD7] hover:text-[#37E23B] hover:border hover:border-[#37E23B] '>
+          <button className='h-[30px]  bg-green text-white mt-3 px-10  rounded-xl hover:bg-lightestGreen hover:text-green hover:border hover:border-green '>
             Iniciar sesión
           </button>
-          <span className='text-red-600 text-center'>
+          <span className='text-textRed text-center'>
             {authenticate.errorLogin}
           </span>
         </form>

@@ -21,7 +21,7 @@ function Friend({ friend }) {
   return (
     <article
       key={friend.uid}
-      className='h-[50px] flex border border-[#37E23B] text-xs items-center px-5 gap-5 justify-between hover:bg-[#D7FFD7] cursor-pointer'
+      className='h-[50px] flex border border-green text-xs items-center px-5 gap-5 justify-between hover:bg-lightestGreenreenreenreen cursor-pointer'
       onClick={() => {
         connectSocket.createIdConnection(friend.email)
       }}
@@ -45,7 +45,7 @@ function Friend({ friend }) {
               deleteFriend.handleDeleteFriend(friend.email)
               dispatch(openModalChat(false))
             }}
-            className='border p-1 border-green-500 hover:bg-red-500 hover:text-white rounded-md'>
+            className='border p-1 border-lighterGreen hover:bg-red-500 hover:text-white rounded-md'>
             Eliminar
           </button>
         )}

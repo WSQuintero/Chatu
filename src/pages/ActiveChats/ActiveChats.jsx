@@ -45,7 +45,7 @@ function ActiveChats() {
           <ModalSearchFriend />
         </Main>
       ) : (
-        <section className='bg-gradient-to-r from-white to-green-500 w-full h-[100vh] relative flex flex-col justify-center items-center'>
+        <section className='bg-gradient-to-r from-white to-lighterGreen w-full h-[100vh] relative flex flex-col justify-center items-center'>
           <Logout />
           <ProfileImageSelector />
           <FriendListContainer />

@@ -31,7 +31,7 @@ function Chat() {
     <>
       {window.innerWidth < 800 && location.pathname === '/chat' ? (
         <Main ref={containerChat}>
-          <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-green-950 shadow-xl  justify-end text-[#37E23B]'>
+          <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-darkGreen shadow-xl  justify-end text-green'>
             <ChatMessages />
             <SendMessage />
           </div>
@@ -41,7 +41,7 @@ function Chat() {
           className=' w-full h-[100vh] relative flex flex-col justify-center items-center'
           ref={containerChat}>
           {' '}
-          <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-green-950 shadow-xl  justify-end text-[#37E23B]'>
+          <div className='flex flex-col w-full gap-3 h-[98vh]  bg-white  lg:rounded-tl-[100px] rounded-3xl overflow-auto   shadow-darkGreen shadow-xl  justify-end text-green'>
             <ChatMessages />
             <SendMessage />
           </div>

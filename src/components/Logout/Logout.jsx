@@ -15,7 +15,7 @@ function Logout() {
   return (
     <button
       onClick={handleLogout}
-      className={`absolute right-3 top-2  bg-white p-2 rounded-full font-bold text-green-400 hover:bg-blue-500 hover:text-white`}>
+      className={`absolute right-3 top-2  bg-white p-2 rounded-full font-bold text-greenish hover:bg-darkBlue hover:text-white`}>
       Logout
     </button>
   )

@@ -14,7 +14,7 @@ function ChatMessages() {
         .map((message, index) =>
           message.sender === sessionUser.email ? (
             <li key={index} className='flex justify-end gap-2'>
-              <p className=' break-all bg-[#D7FFD7] w-auto px-5 rounded-bl-2xl'>
+              <p className=' break-all bg-lightestGreen w-auto px-5 rounded-bl-2xl'>
                 {message.message}
               </p>
               <span className='break-all'> {sessionUser.name}</span>

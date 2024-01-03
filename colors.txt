@@ -1,0 +1,14 @@
+#D7FFD7
+#37E23B
+#19581a
+#008E00
+#19581a
+#257726
+#8ee68f
+#34D399 (to-green-500, text-green-500)
+#22C18D (border-green-400)
+#3B82F6 (bg-blue-500)
+#2563EB (text-blue-600)
+#DC2626 (text-red-600)
+#059669 (text-green-600, green-600, border-green-500)
+#064E3B (shadow-green-950)

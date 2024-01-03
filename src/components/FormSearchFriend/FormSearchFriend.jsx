@@ -31,23 +31,23 @@ function FormSearchFriend() {
           <IoIosCloseCircle />
         </IconContext.Provider>
       </button>
-      <div className='h-[50PX] w-[80%] flex items-center justify-center bg-[#D7FFD7]'>
+      <div className='h-[50PX] w-[80%] flex items-center justify-center bg-lightestGreen'>
         <label
-          className='relative h-full flex items-center p-3 text-[#37E23B]'
+          className='relative h-full flex items-center p-3 text-green'
           htmlFor='searchUserByEmail'>
           <IconContext.Provider value={{ color: '#37E23B', size: '80%' }}>
             <FaSearch />
           </IconContext.Provider>
         </label>
         <input
-          className=' bg-transparent placeholder:text-[#37E23B] h-full outline-none text-[#19581a] font-md  w-full'
+          className=' bg-transparent placeholder:text-green h-full outline-none text-darkGreen font-md  w-full'
           type='email'
           placeholder='Buscar usuario por email'
           name='searchUserByEmail'
           id='searchUserByEmail'
         />
       </div>
-      <button className='bg-[#37E23B] px-5 py-2 rounded-2xl mt-4 text-white font-bold hover:bg-[#D7FFD7] hover:text-[#37E23B] hover:border hover:border-[#37E23B]'>
+      <button className='bg-green px-5 py-2 rounded-2xl mt-4 text-white font-bold hover:bg-lightestGreen hover:text-green hover:border hover:border-green'>
         Buscar
       </button>
     </form>
